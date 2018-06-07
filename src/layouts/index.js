@@ -4,7 +4,7 @@ import Helmet from 'react-helmet'
 
 import Header from '../components/header'
 import './index.css'
-// import leoHeadShot from '../pages/images/leoreyes-headshot.jpg'
+import leoHeadShot from '../pages/images/leoreyes-headshot.jpg'
 
 export default class Layout extends React.Component {
   constructor(props) {
@@ -25,7 +25,7 @@ export default class Layout extends React.Component {
         }}
       >
     <Helmet>
-      <title>{this.state.data.site.siteMetadata.title}</title>
+      {/* <title>{this.state.data.site.siteMetadata.title}</title> */}
       <meta name="description" content="Superman's real identity has been revealed as Leo Reyes. This is his site and contains all secrets about him." />
       <meta name="keywords" content="Leo Reyes, Superman, Web developer, motorcyclist, adrenaline junkie" />
       {/* <meta property="og:image" content={leoHeadShot} /> */}
@@ -36,7 +36,7 @@ export default class Layout extends React.Component {
       <meta property="og:description" content="is Superman"/>
       <meta property="og:url" content="https://leorey.es" />
       <meta property="og:type" content="website" />
-      
+
       <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
       {/* <meta name="google-site-verification" content="uQwgDE00baiRMp6nZq2OkoW8tqOWyk5I39jMWhef3ls" />
 

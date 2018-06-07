@@ -1,18 +1,19 @@
 {
-  "name": "gatsby-starter-default",
-  "description": "Gatsby default starter",
+  "name": "leo-blog-netlify",
+  "description": "Leo's personal site using gatsby and netlify",
   "version": "1.0.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Leo Reyes",
   "dependencies": {
-    "gatsby": "^1.9.247",
+    "@material-ui/core": "^1.2.0",
+    "gatsby": "^1.9.270",
     "gatsby-link": "^1.6.40",
+    "gatsby-plugin-netlify-cms": "^2.0.1",
     "gatsby-plugin-react-helmet": "^2.0.10",
+    "gatsby-source-filesystem": "^1.5.38",
+    "gatsby-transformer-remark": "^1.7.41",
+    "netlify-cms": "^1.8.4",
     "react-helmet": "^5.2.0"
   },
-  "keywords": [
-    "gatsby"
-  ],
-  "license": "MIT",
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
@@ -24,6 +25,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
+    "url": "https://github.com/leoyreyes/blog"
   }
 }
