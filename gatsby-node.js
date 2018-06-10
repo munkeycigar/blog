@@ -27,13 +27,18 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
       result.errors.forEach(e => console.error(e.toString()))
       return Promise.reject(result.errors)
     }
-
-    const posts = result.data.allMarkdownRemark.edges
+    //TODO: separate blog and gallery posts
+    const posts = result.data.allMarkdownRemark.edges.filter(function(edge) {
+        return edge.node.frontmatter.templateKey == 'blog-post'
+    });
+    const galleryPosts = result.data.allMarkdownRemark.edges.filter(function(edge) {
+        return edge.node.frontmatter.templateKey == 'gallery-post'
+    });
 
     posts.forEach(edge => {
       const id = edge.node.id
       createPage({
-        path: edge.node.fields.slug,
+        path: 'blog' + edge.node.fields.slug,
         tags: edge.node.frontmatter.tags,
         component: path.resolve(
           `src/templates/${String(edge.node.frontmatter.templateKey)}.js`
@@ -43,6 +48,19 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
           id,
         },
       })
+    })
+
+    galleryPosts.forEach(edge => {
+        const id = edge.node.id
+        createPage({
+            path: 'gallery' + edge.node.fields.slug,
+            component: path.resolve(
+                `src/templates/${String(edge.node.frontmatter.templateKey)}.js`
+            ),
+            context: {
+                id,
+            },
+        }) 
     })
 
     // Tag pages:

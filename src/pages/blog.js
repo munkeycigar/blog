@@ -1,5 +1,7 @@
-import React from 'react';
-import Link from 'gatsby-link';
+import React from 'react'
+import Link from 'gatsby-link'
+import Paper from '@material-ui/core/Paper'
+import Grid from '@material-ui/core/Grid'
 
 export default class Blog extends React.Component {
     constructor(props) {
@@ -14,18 +16,23 @@ export default class Blog extends React.Component {
     render() {
         return (
             <div>
-                <ul>
+                <Grid container>
                     {this.state.data.allMarkdownRemark.edges.map(document => (
-                        <li key={document.node.id}>
-                            <Link className="button is-small" to={document.node.fields.slug}>
-                                <h3>
-                                    {document.node.frontmatter.title}
-                                </h3>
-                            </Link>                            
-                            {document.node.excerpt}
-                        </li>
-                    ))}
-                </ul>			
+                        <Grid item xs={12} key={document.node.id}>
+                            <Paper style={{ padding: 25}}>
+                                <Link className="button is-small" to={'blog' + document.node.fields.slug}>
+                                    <h3>
+                                        {document.node.frontmatter.title}
+                                    </h3>
+                                </Link>                                                           
+                                {(document.node.frontmatter.image != null) ?
+                                <img src={'/files' + document.node.frontmatter.image} />
+                                : null}
+                                {document.node.excerpt}                                                          
+                            </Paper>
+                        </Grid>                        
+                    ))}                    
+                </Grid>		
             </div>
         );
     }
@@ -33,7 +40,10 @@ export default class Blog extends React.Component {
 
 export const blogMasterQuery = graphql`
   query BlogMaster {
-    allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }) {
+    allMarkdownRemark(
+        filter: { frontmatter: { templateKey: { eq: "blog-post"} } },
+        sort: { order: DESC, fields: [frontmatter___date] }
+    ) {
       edges {
         node {
           excerpt(pruneLength: 400)
