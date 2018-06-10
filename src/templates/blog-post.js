@@ -16,7 +16,6 @@ class BlogPostTemplate extends React.Component {
                 </h1>
                 <div dangerouslySetInnerHTML={{__html:this.props.content}}>
                 </div>
-                {console.log(this)}
             </div>
         )
     }

@@ -18,7 +18,7 @@ export default class Blog extends React.Component {
             <div>
                 <Grid container>
                     {this.state.data.allMarkdownRemark.edges.map(document => (
-                        <Grid item xs={12} key={document.node.id}>
+                        <Grid item xs={12}>
                             <Paper style={{ padding: 25}}>
                                 <Link className="button is-small" to={'blog' + document.node.fields.slug}>
                                     <h3>
