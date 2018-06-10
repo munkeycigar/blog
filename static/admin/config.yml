@@ -27,6 +27,8 @@ collections:
     folder: 'content/gallery'
     create: true
     fields:
-      - {label: 'Title', name: 'title', widget: 'string'}
-      - {label: 'Publish Date', name: 'date', widget: 'datetime'}
-      - {label: 'Image', name: 'image', widget: 'image'}
+    - {label: 'Template Key', name: 'templateKey', widget: 'hidden', default: 'gallery-post'}
+    - {label: 'Title', name: 'title', widget: 'string'}
+    - {label: 'Publish Date', name: 'date', widget: 'datetime'}
+    - {label: 'Image', name: 'image', widget: 'image'}
+    - {label: 'Tags', name: 'tags', widget: 'list'}
