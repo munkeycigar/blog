@@ -6,6 +6,9 @@ description: Test post.
 tags:
     - test
 ---
-### Hello, 
+### Hello,
 
 This is my first post. Testing Netlify as a CMS interated with Gatsby.
+Testing adding of an image using markdown.
+
+![](/images/uploads/jr-taco.png)
