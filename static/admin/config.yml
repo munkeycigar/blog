@@ -18,10 +18,10 @@ collections:
       - {label: 'Template Key', name: 'templateKey', widget: 'hidden', default: 'blog-post'}
       - {label: 'Title', name: 'title', widget: 'string'}
       - {label: 'Publish Date', name: 'date', widget: 'datetime'}
-      - {label: 'Featured Image', name: 'thumbnail', widget: 'image'}
+      - {label: 'Featured Image', name: 'thumbnail', widget: 'image', required: false}
       - {label: 'Body', name: 'body', widget: 'markdown'}
-      - {label: 'Author', name: 'author', widget: 'string'}
-      - {label: 'Tags', name: 'tags', widget: 'list'}
+      - {label: 'Author', name: 'author', widget: 'string', required: false}
+      - {label: 'Tags', name: 'tags', widget: 'list', required: false}
 
   - name: 'gallery'
     label: 'Gallery'
@@ -33,4 +33,4 @@ collections:
     - {label: 'Title', name: 'title', widget: 'string'}
     - {label: 'Publish Date', name: 'date', widget: 'datetime'}
     - {label: 'Image', name: 'image', widget: 'image'}
-    - {label: 'Tags', name: 'tags', widget: 'list'}
+    - {label: 'Tags', name: 'tags', widget: 'list', required: false}
