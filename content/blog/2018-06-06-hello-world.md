@@ -2,9 +2,8 @@
 templateKey: blog-post
 title: Hello World
 date: '2018-06-06T11:53:01-05:00'
-description: Test post.
 tags:
-    - test
+  - ''
 ---
 ### Hello,
 
