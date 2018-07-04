@@ -5,7 +5,8 @@ date: '2018-06-25T13:47:16-05:00'
 thumbnail: /files/images/uploads/img_0007.jpg
 author: Leo Reyes
 tags:
-  - Travels Ecuador
+  - Travels
+  - Ecuador
 ---
 I recently got back from a trip to Ecuador with my dad. I'd like to write a detailed post about everything I did, but I personally hate long articles, so I'm going to let pictures do the talking (and I suck at writing).
 
