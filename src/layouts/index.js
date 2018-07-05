@@ -28,7 +28,7 @@ export default class Layout extends React.Component {
       {/* <title>{this.state.data.site.siteMetadata.title}</title> */}
       <meta name="description" content="Superman's real identity has been revealed as Leo Reyes. This is his site and contains all secrets about him." />
       <meta name="keywords" content="Leo Reyes, Superman, Web developer, motorcyclist, adrenaline junkie" />
-      {/* <meta property="og:image" content={leoHeadShot} /> */}
+      <meta property="og:image" content={leoHeadShot} />
       <meta property="og:image:type" content="image/jpeg" />
       <meta property="og:image:width" content="1060" />
       <meta property="og:image:height" content="1060" />
@@ -44,15 +44,16 @@ export default class Layout extends React.Component {
     </Helmet>
     <Header/>
     <div
-      style={{
-        margin: '0 auto',
-        maxWidth: 960,
-        padding: '0px 1.0875rem 1.45rem',
-        paddingTop: 0,
-        height: 'calc(100% - 64px)',
-        display: 'flex',
-        justifyContent: 'center',
-      }}
+        className={'layout-container'}
+        style={{
+            margin: '0 auto',
+            maxWidth: 960,
+            padding: '0px 1.0875rem 1.45rem',
+            paddingTop: 0,
+            height: 'calc(100% - 64px)',
+            display: 'flex',
+            justifyContent: 'center',
+        }}
     >
       {this.children()}
     </div>

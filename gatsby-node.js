@@ -1,6 +1,7 @@
 const _ = require('lodash')
 const path = require('path')
 const { createFilePath } = require('gatsby-source-filesystem')
+const { fmImagesToRelative } = require('gatsby-remark-relative-images')
 
 exports.createPages = ({ boundActionCreators, graphql }) => {
   const { createPage } = boundActionCreators
@@ -90,14 +91,25 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
 }
 
 exports.onCreateNode = ({ node, boundActionCreators, getNode }) => {
-  const { createNodeField } = boundActionCreators
-
-  if (node.internal.type === `MarkdownRemark`) {
-    const value = createFilePath({ node, getNode })
-    createNodeField({
-      name: `slug`,
-      node,
-      value,
-    })
-  }
+    const { frontmatter } = node
+    if (frontmatter) {
+        const { image } = frontmatter
+        if (image) {
+            if (image.indexOf('/images') === 0) {
+                frontmatter.image = path.relative(
+                    path.dirname(node.fileAbsolutePath),
+                    path.join(__dirname, '/static/files/', image)
+                )
+            }
+        }
+    }
+    const { createNodeField } = boundActionCreators
+    if (node.internal.type === `MarkdownRemark`) {
+        const value = createFilePath({ node, getNode })
+        createNodeField({
+            name: `slug`,
+            node,
+            value,
+        })
+    }
 }

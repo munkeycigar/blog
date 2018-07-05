@@ -2,6 +2,7 @@ import React from 'react'
 import Link from 'gatsby-link'
 import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
+import Helmet from 'react-helmet'
 
 export default class Blog extends React.Component {
     constructor(props) {
@@ -16,6 +17,9 @@ export default class Blog extends React.Component {
     render() {
         return (
             <div>
+                <Helmet
+                    title={`Leo's Blog`}
+                />
                 <Grid container>
                     {this.state.data.allMarkdownRemark.edges.map(document => (
                         <Grid item xs={12}>

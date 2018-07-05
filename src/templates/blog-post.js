@@ -5,15 +5,16 @@ import PropTypes from 'prop-types'
 
 class BlogPostTemplate extends React.Component {
     constructor(props) {
-        super(props)
-        
+        super(props)        
     }
     render() {
         return ( 
             <div>
+                {this.props.helmet}
                 <h1>
                     {this.props.title}
                 </h1>
+                <img src={this.props.thumbnail} style={{maxHeight: 350}}/>
                 <div dangerouslySetInnerHTML={{__html:this.props.content}}>
                 </div>
             </div>
@@ -26,6 +27,7 @@ BlogPostTemplate.propTypes = {
     contentComponent: PropTypes.func,
     description: PropTypes.string,
     title: PropTypes.string,
+    thumbnail: PropTypes.string,
     helmet: PropTypes.instanceOf(Helmet),
 }
 
@@ -43,6 +45,7 @@ export default class BlogPost extends React.Component {
                 helmet={<Helmet title={`${this.markdownRemark.frontmatter.title} | Blog`} />}
                 tags={this.markdownRemark.frontmatter.tags}
                 title={this.markdownRemark.frontmatter.title}
+                thumbnail={this.markdownRemark.frontmatter.thumbnail}
             />
         )
     }
@@ -61,7 +64,7 @@ export const pageQuery = graphql `
       frontmatter {
         date(formatString: "MMMM DD, YYYY")
         title
-        description
+        thumbnail
         tags
       }
     }

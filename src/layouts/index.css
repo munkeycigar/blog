@@ -627,3 +627,24 @@ pre tt:after {
     font-size: 100%;
   }
 }
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.main-container::after {
+    background-image: url(/files/images/lion-circle.jpg);
+    background-size: contain;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: .5;
+    content: "";
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}

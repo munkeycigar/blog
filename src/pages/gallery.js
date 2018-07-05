@@ -1,29 +1,29 @@
 import React from 'react'
-import Link from 'gatsby-link'
-import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
+import Img from 'gatsby-image'
+import GalleryPost from '../components/gallery-post'
+import PropTypes from 'prop-types'
+import Helmet from 'react-helmet'
 
-export default class Gallery extends React.Component {
+
+class Gallery extends React.Component {
     constructor(props) {
-        super(props)
-        console.log(props)
-        this.state = {
-            data: props.data
-        }        
-        const { classes } = props
+        super(props)     
     }
 
     render() {
         return(
             <div>
+                <Helmet
+                    title={`Pensieve`}
+                />
                 <Grid container spacing={24}>
-                    {this.state.data.allMarkdownRemark.edges.map(document => (
-                        <Grid item xs>
-                            <Link className="button is-small" to={'gallery' + document.node.fields.slug}>
-                                <Paper>                                
-                                    <img src={'/files' + document.node.frontmatter.image} />                                                            
-                                </Paper>
-                            </Link>
+                    {this.props.data.allMarkdownRemark.edges.map(document => (                        
+                        <Grid item xs key={document.node.id}>
+                            <GalleryPost 
+                                slug={'gallery' + document.node.fields.slug}
+                                frontmatter={document.node.frontmatter}
+                            />
                         </Grid>                        
                     ))}                    
                 </Grid>		
@@ -32,8 +32,14 @@ export default class Gallery extends React.Component {
     }
 }
 
+Gallery.propTypes = {
+    data: PropTypes.object,
+}
+
+export default Gallery
+
 export const galleryMasterQuery = graphql`
-  query GalleryMaster {
+query GalleryMaster {
     allMarkdownRemark(
         filter: { frontmatter: { templateKey: { eq: "gallery-post"} } }
     ) {
@@ -41,13 +47,22 @@ export const galleryMasterQuery = graphql`
             node {
                 id
                 fields {
-                    slug          
+                    slug
                 }
                 frontmatter {
                     title
                     templateKey
                     date
-                    image
+                    image {
+                        childImageSharp {
+                            sizes(maxWidth: 200, maxHeight: 200) {
+                                ...GatsbyImageSharpSizes
+                            }
+                            resolutions(width: 256, height: 256) {
+                                ...GatsbyImageSharpResolutions
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -59,3 +74,6 @@ export const galleryMasterQuery = graphql`
     }
   }
 `
+// query GalleryPage($id: String!) {
+        
+// }

@@ -41,9 +41,9 @@ const styles = {
 class Home extends React.Component {
     render() {
         const { classes } = this.props;
-
+        
         return (
-            <div className={classes.mainContainer}>
+            <div className={'main-container'}>
                 <Grid container  
                       alignItems={'center'}
                       direction={'column'}

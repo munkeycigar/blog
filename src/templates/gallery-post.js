@@ -2,6 +2,7 @@ import React from 'react'
 import Helmet from 'react-helmet'
 import Link from 'gatsby-link'
 import PropTypes from 'prop-types'
+import GalleryPostDetail from '../components/gallery-post-detail'
 
 class GalleryPostTemplate extends React.Component {
     constructor(props) {
@@ -12,6 +13,7 @@ class GalleryPostTemplate extends React.Component {
     }
     render() {
         return (
+            // <GalleryPostDetail post={this.props.data.postsJson} />
             <div>
                 <h1>
                     {this.props.title}
@@ -27,26 +29,29 @@ GalleryPostTemplate.propTypes = {
     contentComponent: PropTypes.func,
     description: PropTypes.string,
     title: PropTypes.string,
-    image: PropTypes.string,
+    smallImage: PropTypes.object,
     helmet: PropTypes.instanceOf(Helmet),
 }
 
 export default class GalleryPost extends React.Component {
     constructor(props) {
         super(props)
-        this.markdownRemark = props.data.markdownRemark
+        this.markdownRemark = props.data.markdownRemark        
     }
 
     render() {
         return (
-            <GalleryPostTemplate
-                content={this.markdownRemark.html}
-                description={this.markdownRemark.frontmatter.description}
-                helmet={<Helmet title={`${this.markdownRemark.frontmatter.title} | Blog`} />}
-                tags={this.markdownRemark.frontmatter.tags}
-                title={this.markdownRemark.frontmatter.title}
-                image={this.markdownRemark.frontmatter.image}
+            <GalleryPostDetail 
+                post={this.markdownRemark}
             />
+            // <GalleryPostTemplate
+            //     content={this.markdownRemark.html}
+            //     description={this.markdownRemark.frontmatter.description}
+            //     helmet={<Helmet title={`${this.markdownRemark.frontmatter.title} | Blog`} />}
+            //     tags={this.markdownRemark.frontmatter.tags}
+            //     title={this.markdownRemark.frontmatter.title}
+            //     image={this.markdownRemark.frontmatter.image}
+            // />
         )
     }
 }
@@ -65,8 +70,22 @@ export const galleryPostQuery = graphql `
             frontmatter {
                 title
                 date
-                image
+                image {
+                    childImageSharp {
+                        sizes {
+                            ...GatsbyImageSharpSizes
+                        }
+                        resolutions(width: 256, height: 256) {
+                            ...GatsbyImageSharpResolutions
+                        }
+                    }
+                }
             }            
+        }
+        site {
+            siteMetadata {
+                title
+            }
         }
     }
 `
