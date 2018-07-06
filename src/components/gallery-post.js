@@ -16,10 +16,10 @@ class GalleryPost extends React.Component {
             <div>
                 <Link className="button is-small" to={this.slug}>
                     <Paper 
-                    style={{
-                        textAlign: `center`,
-                        paddingTop: 7
-                    }}
+                      style={{
+                          textAlign: `center`,
+                          paddingTop: 7
+                      }}
                     >
                         <Img resolutions={this.frontmatter.image.childImageSharp.resolutions} />
                     </Paper>
