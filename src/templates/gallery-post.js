@@ -1,6 +1,6 @@
 import React from 'react'
+import { graphql } from 'gatsby'
 import Helmet from 'react-helmet'
-import Link from 'gatsby-link'
 import PropTypes from 'prop-types'
 import GalleryPostDetail from '../components/gallery-post-detail'
 
@@ -62,7 +62,7 @@ GalleryPost.propTypes = {
   }),
 }
 export const galleryPostQuery = graphql `
-    query GalleryPost($id: String!) {
+    query($id: String!) {
         # Select the post which equals this id.
         markdownRemark(id: { eq: $id }) {
             # Specify the fields from the post we need.

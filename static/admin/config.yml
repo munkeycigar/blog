@@ -1,8 +1,11 @@
+# backend:
+#   name: git-gateway
+#   branch: master # Branch to update (optional; defaults to master)
+#   identity_url: 'https://elastic-blackwell-293203.netlify.com/.netlify/identity'
+#   gateway_url: 'https://elastic-blackwell-293203.netlify.com/.netlify/git/github'
 backend:
-  name: git-gateway
-  branch: master # Branch to update (optional; defaults to master)
-  identity_url: 'https://elastic-blackwell-293203.netlify.com/.netlify/identity'
-  gateway_url: 'https://elastic-blackwell-293203.netlify.com/.netlify/git/github'
+  name: gitlab
+  repo: LeoYReyes/personal-site # Path to your GitLab repository
 
 media_folder: '/static/files/images/uploads' # Media files will be stored in the repo under /images/uploads
 public_folder: '/files/images/uploads' # The src attribute for uploaded media will begin with /images/uploads

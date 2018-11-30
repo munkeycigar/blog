@@ -1,22 +1,22 @@
-import React from 'react'
-import Grid from '@material-ui/core/Grid'
-import Img from 'gatsby-image'
-import GalleryPost from '../components/gallery-post'
-import PropTypes from 'prop-types'
-import Helmet from 'react-helmet'
+import React from 'react';
+import { graphql } from 'gatsby';
+
+import Grid from '@material-ui/core/Grid';
+import GalleryPost from '../components/gallery-post';
+import PropTypes from 'prop-types';
+
+import Layout from '../components/page-layout';
 
 
 class Gallery extends React.Component {
     constructor(props) {
-        super(props)     
+        super(props); 
     }
 
     render() {
         return(
+          <Layout title={`Pensieve | Leo Reyes`}>
             <div>
-                <Helmet
-                    title={`Pensieve`}
-                />
                 <Grid container spacing={24}>
                     {this.props.data.allMarkdownRemark.edges.map(document => (                        
                         <Grid item xs key={document.node.id}>
@@ -28,6 +28,7 @@ class Gallery extends React.Component {
                     ))}                    
                 </Grid>		
             </div>
+          </Layout>
         )
     }
 }
@@ -39,7 +40,7 @@ Gallery.propTypes = {
 export default Gallery
 
 export const galleryMasterQuery = graphql`
-query GalleryMaster {
+query {
     allMarkdownRemark(
         filter: { frontmatter: { templateKey: { eq: "gallery-post"} } }
     ) {
@@ -55,11 +56,8 @@ query GalleryMaster {
                     date
                     image {
                         childImageSharp {
-                            sizes(maxWidth: 200, maxHeight: 200) {
-                                ...GatsbyImageSharpSizes
-                            }
-                            resolutions(width: 256, height: 256) {
-                                ...GatsbyImageSharpResolutions
+                            fixed(width: 256, height: 256) {
+                                ...GatsbyImageSharpFixed
                             }
                         }
                     }
@@ -74,6 +72,3 @@ query GalleryMaster {
     }
   }
 `
-// query GalleryPage($id: String!) {
-        
-// }

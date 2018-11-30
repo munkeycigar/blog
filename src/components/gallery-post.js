@@ -1,7 +1,6 @@
 import React from 'react'
 import Link from 'gatsby-link'
 import Paper from '@material-ui/core/Paper'
-import Grid from '@material-ui/core/Grid'
 import Img from "gatsby-image"
 
 class GalleryPost extends React.Component {
@@ -21,7 +20,7 @@ class GalleryPost extends React.Component {
                           paddingTop: 7
                       }}
                     >
-                        <Img resolutions={this.frontmatter.image.childImageSharp.resolutions} />
+                        <Img fixed={this.frontmatter.image.childImageSharp.fixed} />
                     </Paper>
                 </Link>
             </div>
@@ -29,7 +28,7 @@ class GalleryPost extends React.Component {
     }
 }
 
-export default GalleryPost
+export default GalleryPost;
 
 // export const galleryPostFragment = graphql`
 //     fragment squareImage on File {

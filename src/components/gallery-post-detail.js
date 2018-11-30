@@ -1,52 +1,55 @@
-import React from 'react'
+import React from 'react';
+import Img from 'gatsby-image';
+import { graphql } from 'gatsby';
+
+import Layout from './page-layout';
 
 class GalleryPostDetail extends React.Component {
-    constructor(props) {
-        super(props)
-        this.props = props
-    }
+  constructor(props) {
+    super(props);
+    this.props = props;
+  }
 
-    render() {
-        const {
-            image,
-            id,
-            title
-        } = this.props.post.frontmatter
-        const { sizes } = image.childImageSharp
+  render() {
+    const {
+      image,
+      title
+    } = this.props.post.frontmatter;
+    const { sizes } = image.childImageSharp;
 
-        return (
-            <div>
-                <img
-                    key={sizes.src}
-                    src={sizes.src}
-                    srcSet={sizes.srcSet}
-                    sizes="(min-width: 640px) 640px, 100vw"
-                />
-            </div>
-        )
-    }
+    return (
+      <Layout>
+        <div 
+          style={{
+            width: `100%`,
+            height: `100%`
+          }}
+        >
+          <h1
+            style={{
+              textAlign: `center`
+            }}>{title}</h1>
+          <Img fluid={sizes} />
+        </div>
+      </Layout>
+    )
+  }
 }
 
-export default GalleryPostDetail
+export default GalleryPostDetail;
 
 export const galleryPostDetailFragment = graphql`
     fragment GalleryPostDetail_details on MarkdownRemark {
-        id      
-        frontmatter {
-            title
-            bigImage: image {
-                childImageSharp {
-                    # Here we query for *multiple* image thumbnails to be
-                    # created. So with no effort on our part, 100s of
-                    # thumbnails are created. This makes iterating on
-                    # designs effortless as we change the args
-                    # for the query and we get new thumbnails.
-                    big: sizes(maxWidth: 640) {
-                        src
-                        srcSet
-                    }
-                }
-            }
+      id
+      frontmatter {
+        title
+        image {
+          childImageSharp {
+            fluid {
+              ...GatsbyImageSharpFluid
+            }                  
+          }
         }
+      }
     }
 `
