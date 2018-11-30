@@ -8,16 +8,21 @@ tags:
   - AWS
   - SFTP
 ---
-I've recently setup a new instance of [AWS EC2](https://aws.amazon.com/ec2/)(Ubuntu 18.04) to host WordPress sites using [Docker](https://www.docker.com/). To make transferring of files a lot easier from my development machine to my ec2 instance, I set up a SFTP server. 
+I've recently setup a new instance of [AWS EC2](https://aws.amazon.com/ec2/)(Ubuntu 18.04) to host WordPress sites using [Docker](https://www.docker.com/). To make transferring of files a lot easier from my development environment to my ec2 instance, I set up an SFTP server. 
 
-If anyone else is trying to do something similar, here are the steps I took.
+If anyone else is trying to do something similar, here is how you can do the same.
 
 1. Install vsftpd
    ```
    sudo apt-get install vsftpd
    ```
 2. Update the vsftpd.conf file (/etc/vsftpd.conf)
-   1. I created a copy of the original file and just created a new one with the following config
+   1. I created a copy of the original file and just created a new one
+      ```
+      mv /etc/vsftpd.conf /etc/vsftpd.conf_orig
+      touch /etc/vsftpd.conf
+      ```
+      The new one should have the following config
       ```
       listen=NO
       listen_ipv6=YES
@@ -40,7 +45,7 @@ If anyone else is trying to do something similar, here are the steps I took.
       pasv_max_port-12048
       allow_writeable_chroot=YES
       ```
-      Restart the vsftpd server once you save the update.
+      Restart the vsftpd server once you save the config file.
       ```
       sudo service vsftpd restart
       ```
@@ -49,7 +54,7 @@ If anyone else is trying to do something similar, here are the steps I took.
    2. Go to **Security Groups** under the left navigation
    3. Select the group that is assigned to the EC2 instance or create a new one and assign it to the instance
    4. Add a rule to allow ports 21 and 12000-12048 (or whatever port range you used in the vsftpd.conf, pasv_min_port - pasv_max_port)
-4. Create group and add user
+4. Create group and add user. This is the user that you will use to access sftp.
    ```
    sudo addgroup sftp
    sudo useradd -m sftpuser -g sftp
@@ -72,4 +77,4 @@ If anyone else is trying to do something similar, here are the steps I took.
    sudo service ssh restart
    ```
 
-Hopefully this can get you started
+This is a pretty simple setup, hopefully this helps you get started.
