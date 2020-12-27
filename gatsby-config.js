@@ -1,6 +1,8 @@
 module.exports = {
   siteMetadata: {
     title: 'Leo Reyes',
+    siteUrl: 'https://leorey.es',
+    description: '',
   },
   plugins: [
     {
@@ -31,23 +33,31 @@ module.exports = {
       options: {
         plugins: [
           {
-            resolve: `gatsby-remark-relative-images`,
-          },
-          {
-            resolve: `gatsby-remark-images`,
+            resolve: 'gatsby-remark-relative-images',
             options: {
-              // It's important to specify the maxWidth (in pixels) of
-              // the content container as this plugin uses this as the
-              // base for generating different widths of each image.
-              maxWidth: 900,
+              // [Optional] The root of "media_folder" in your config.yml
+              // Defaults to "static"
+              staticFolderName: 'static/files',
+              // [Optional] Include the following fields, use dot notation for nested fields
+              // All fields are included by default
+              // include: ['featured'],
+              // [Optional] Exclude the following fields, use dot notation for nested fields
+              // No fields are excluded by default
+              // exclude: ['featured.skip'],
             },
           },
           {
-            resolve: `@debiki/gatsby-plugin-talkyard`,
+            resolve: 'gatsby-remark-images',
             options: {
-              talkyardServerUrl: 'https://comments-for-leorey-es.talkyard.net'
-            }
+              maxWidth: 900,
+            },
           },
+          // {
+          //   resolve: '@debiki/gatsby-plugin-talkyard',
+          //   options: {
+          //     talkyardServerUrl: 'https://comments-for-leorey-es.talkyard.net',
+          //   },
+          // },
         ],
       },
     },
@@ -62,4 +72,4 @@ module.exports = {
     //     },
     // },
   ],
-}
+};

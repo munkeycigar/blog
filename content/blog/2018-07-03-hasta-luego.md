@@ -1,9 +1,10 @@
 ---
 templateKey: blog-post
 title: Hasta Luego
-date: '2018-06-25T13:47:16-05:00'
-thumbnail: /files/images/uploads/img_0007.jpg
+date: 2018-06-25T01:11:34.239Z
+featuredImage: /images/uploads/img_0007.jpg
 author: Leo Reyes
+slug: hasta-luega
 tags:
   - Travels
   - Ecuador
@@ -16,6 +17,6 @@ I got to experience both the developed and undeveloped areas of the country. The
 
 One of the most interesting part of the trip was the drive. Getting to see the change in landscape and vegetation as we went from the coast, up into the highlands was an awesome experience!
 
-![null](/static/files/images/uploads/img_0100.jpg)
+![null](/images/uploads/img_0100.jpg)
 
 There is so much more to do and explore in Ecuador. This trip was a good motivation for me to learn Spanish, so that I can come back and adventure through the rest of Ecuador with some friends!

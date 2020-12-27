@@ -1,7 +1,7 @@
 ---
 templateKey: blog-post
 title: Setting up SFTP on AWS EC2
-date: 2018-11-21T15:46:00.725Z
+date: 2018-11-22T15:46:00.725Z
 author: Leo Reyes
 tags:
   - How-To

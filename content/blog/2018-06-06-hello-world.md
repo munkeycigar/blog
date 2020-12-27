@@ -1,8 +1,9 @@
 ---
 templateKey: blog-post
 title: Hello World
-date: '2018-06-06T11:53:01-05:00'
-thumbnail: /files/images/uploads/huntsville_rocket_center.png
+date: 2018-06-06T01:11:34.239Z
+featuredImage: /images/uploads/huntsville_rocket_center.png
+slug: hello-world
 ---
 ## Suh dudes,
 
